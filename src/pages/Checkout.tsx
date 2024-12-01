@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCartStore } from '../store/cartStore';
+import Footer from '../components/Footer'; 
 
 type PaymentMethod = 'cod' | 'upi';
 
@@ -26,6 +27,7 @@ export function Checkout() {
   }
 
   return (
+    <div className="flex flex-col min-h-screen">
     <div className="pt-16 min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-8">Checkout</h1>
@@ -172,5 +174,9 @@ export function Checkout() {
         </div>
       </div>
     </div>
+
+      {/* Footer */}
+  <Footer />
+  </div>
   );
 }

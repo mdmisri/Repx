@@ -1,8 +1,11 @@
 import React from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import Footer from '../components/Footer'; 
+
 
 export function Contact() {
   return (
+    <div className="flex flex-col min-h-screen">
     <div className="pt-16 min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-8">Contact Us</h1>
@@ -70,5 +73,8 @@ export function Contact() {
         </div>
       </div>
     </div>
+     {/* Footer */}
+  <Footer />
+  </div>
   );
 }

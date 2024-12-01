@@ -17,23 +17,21 @@ export function Shop() {
   }, [categoryFilter]);
 
   const filteredProducts = useMemo(() => {
-    if (selectedCategory === 'all') return products;
+    if (!selectedCategory || selectedCategory === 'all') return products;
     return products.filter((product) => product.category === selectedCategory);
   }, [selectedCategory]);
 
-  const categories = ['all', 'Hoodies', 'T-Shirts', 'Vests', 'Track Pants'];
+  const categories = ['all', ...new Set(products.map(product => product.category))];
 
   return (
-    <div className="bg-black text-white min-h-screen p-4 md:p-8">
+    <div className="container mx-auto px-4 py-8">
       {/* Header Section */}
-      <header className="text-center mb-8">
-        <h1 className="text-2xl md:text-4xl font-bold">REPX Store</h1>
-      </header>
+      <h1 className="text-3xl font-bold mb-8 text-white">REPX Store</h1>
 
       {/* View and Filter Controls */}
-      <div className="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0">
+      <div className="flex justify-between items-center mb-8">
         {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4">
+        <div className="flex flex-wrap gap-2">
           {categories.map((category) => (
             <button
               key={category}
@@ -50,14 +48,14 @@ export function Shop() {
         </div>
 
         {/* View Mode Toggle */}
-        <div className="flex items-center space-x-2 bg-gray-800 rounded-full p-1">
+        <div className="flex items-center space-x-2">
           <button
             onClick={() => setViewMode('grid')}
             className={`p-2 rounded-full ${
               viewMode === 'grid' ? 'bg-white text-black' : 'text-gray-400 hover:bg-gray-700'
             }`}
           >
-            <Grid size={20} />
+            <Grid />
           </button>
           <button
             onClick={() => setViewMode('list')}
@@ -65,18 +63,13 @@ export function Shop() {
               viewMode === 'list' ? 'bg-white text-black' : 'text-gray-400 hover:bg-gray-700'
             }`}
           >
-            <List size={20} />
+            <List />
           </button>
         </div>
       </div>
 
       {/* Products Grid/List */}
-      <div className={`
-        ${viewMode === 'grid' 
-          ? 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4' 
-          : 'flex flex-col space-y-4'
-        }`}
-      >
+      <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6' : 'grid-cols-1 gap-4'}`}>
         {filteredProducts.map((product) => (
           <ProductCard 
             key={product.id} 
@@ -88,7 +81,7 @@ export function Shop() {
 
       {/* No Products Placeholder */}
       {filteredProducts.length === 0 && (
-        <div className="text-center text-gray-500 py-12">
+        <div className="text-center text-gray-400 py-8">
           No products found in this category.
         </div>
       )}

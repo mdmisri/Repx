@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export function VideoBanner() {
   return (
     <div className="relative h-screen w-full overflow-hidden">
@@ -21,12 +23,12 @@ export function VideoBanner() {
           <p className="text-xl md:text-2xl mb-8">
             Premium gym apparel for peak performance
           </p>
-          <a
-            href="#shop"
+          <Link
+            to="/shop"
             className="bg-white text-black px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors"
           >
             Shop Now
-          </a>
+          </Link>
         </div>
       </div>
     </div>
