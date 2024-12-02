@@ -11,7 +11,7 @@ export function VideoBanner() {
         className="absolute top-0 left-0 w-full h-full object-cover"
       >
         <source
-          src="/src/assets/videos/freddiecity.mp4"
+          src="/assets/videos/freddiecity.mp4"  // Path relative to the public folder
           type="video/mp4"
         />
       </video>
